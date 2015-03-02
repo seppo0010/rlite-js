@@ -79,7 +79,7 @@ var command = function(db, args) {
 };
 
 exports.createClient = function(arg0, arg1){
-    var db = libsrlite.rliteConnect(arg0, arg1 || 0);
+    var db = libsrlite.rliteConnect(arg0 || ':memory:', arg1 || 0);
     return {
         command: function(args) {
             return command(db, args);
