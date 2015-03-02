@@ -1,0 +1,24 @@
+{
+  "name": "rlite",
+  "version": "0.0.1",
+  "description": "rlite client library",
+  "keywords": [
+    "redis",
+    "rlite",
+    "database"
+  ],
+  "author": "Sebastian Waisbrot <seppo0010@gmail.com>",
+  "main": "./index.js",
+  "scripts": {
+    "test": "node ./test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/seppo0010/rlite-js.git"
+  },
+  "dependencies": {
+    "ffi": "^1.2.7",
+    "ref": "^1.0.0",
+    "ref-struct": "^1.0.0"
+  }
+}
