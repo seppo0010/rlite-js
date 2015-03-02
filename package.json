@@ -1,6 +1,6 @@
 {
   "name": "rlite",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "rlite client library",
   "keywords": [
     "redis",
