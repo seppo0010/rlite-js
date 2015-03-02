@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.org/seppo0010/rlite-js.svg?branch=master)](https://travis-ci.org/seppo0010/rlite-js)
 
-Ruby bindings for rlite. For more information about rlite, go to
+node.js bindings for rlite. For more information about rlite, go to
 [rlite repository](https://github.com/seppo0010/rlite)
 
 ## Installation
