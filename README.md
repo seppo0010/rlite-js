@@ -8,7 +8,7 @@ Ruby bindings for rlite. For more information about rlite, go to
 ## Installation
 
 ```bash
-$ npm install hirlite
+$ npm install rlite
 ```
 
 ## Usage
