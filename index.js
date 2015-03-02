@@ -18,7 +18,7 @@ reply.defineProperty('element', replyPtr);
 
 var size_tPtr = ref.refType(ref.types.size_t)
 
-var libsrlite = ffi.Library('./libhirlite', {
+var libsrlite = ffi.Library('./vendor/rlite/src/libhirlite', {
   'rliteConnect': [ rlitePtr, [ 'string', 'int' ] ],
   'rliteFree': [ 'void', [ rlitePtr ] ],
   'rliteCommandArgv': [ replyPtr, [ rlitePtr, 'int', stringPtr, size_tPtr ] ],

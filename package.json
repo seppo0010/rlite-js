@@ -10,6 +10,7 @@
   "author": "Sebastian Waisbrot <seppo0010@gmail.com>",
   "main": "./index.js",
   "scripts": {
+    "install": "cd vendor/rlite && make libhirlite && cd ../..",
     "test": "node ./test.js"
   },
   "repository": {
