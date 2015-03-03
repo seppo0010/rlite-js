@@ -11,7 +11,7 @@
   "main": "./index.js",
   "scripts": {
     "install": "cd vendor/rlite && make libhirlite && cd ../..",
-    "test": "node ./test.js"
+    "test": "mocha --reporter dot --slow 200ms --bail"
   },
   "repository": {
     "type": "git",
@@ -22,5 +22,8 @@
     "ref": "^1.0.0",
     "ref-struct": "^1.0.0"
   },
-  "license": "BSD"
+  "license": "BSD",
+  "devDependencies": {
+    "mocha": "^2.1.0"
+  }
 }

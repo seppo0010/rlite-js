@@ -59,7 +59,14 @@ var reply_to_js = function(reply) {
     throw new Error('Unexpected type ' + reply.type);
 };
 
-var command = function(db, args) {
+var prepareReply = function(replyObj) {
+    var data = replyObj.deref();
+    var obj = reply_to_js(data);
+    libsrlite.rliteFreeReplyObject(replyObj);
+    return obj;
+}
+
+var prepareArgs = function(args) {
     var argv = new Buffer(ref.sizeof.pointer * args.length);
     var argvlen = new Buffer(ref.sizeof.uint64 * args.length);
 
@@ -70,19 +77,39 @@ var command = function(db, args) {
 
         ref.writeUInt64(argvlen, ref.sizeof.uint64 * i, args[i].length);
     }
+    return {argv: argv, argvlen: argvlen, argc: args.length};
+}
 
-    var replyObj = libsrlite.rliteCommandArgv(db, args.length, argv, argvlen);
-    var data = replyObj.deref();
-    var obj = reply_to_js(data);
-    libsrlite.rliteFreeReplyObject(replyObj);
-    return obj;
+var command = function(db, args, callback) {
+    var p = prepareArgs(args);
+    return libsrlite.rliteCommandArgv.async(db, p.argc, p.argv, p.argvlen, function (err, ret) {
+        if (err) {
+            callback(err);
+            return;
+        }
+        var reply = prepareReply(ret);
+        if (reply instanceof Error) {
+            callback(reply);
+        } else {
+            callback(null, reply);
+        }
+    });
+};
+
+var commandSync = function(db, args, callback) {
+    var p = prepareArgs(args);
+    var ret = libsrlite.rliteCommandArgv(db, p.argc, p.argv, p.argvlen);
+    return prepareReply(ret);
 };
 
 exports.createClient = function(arg0, arg1){
     var db = libsrlite.rliteConnect(arg0 || ':memory:', arg1 || 0);
     return {
-        command: function(args) {
-            return command(db, args);
-        }
+        command: function(args, callback) {
+            return command(db, args, callback);
+        },
+        commandSync: function(args) {
+            return commandSync(db, args);
+        },
     };
 }

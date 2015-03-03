@@ -16,10 +16,28 @@ $ npm install rlite
 ```js
 > var rlite = require('rlite');
 undefined
-> var r = rlite.createClient(':memory:')
+> var r = rlite.createClient(':memory:');
 undefined
-> r.command(['set', 'key', 'value'])
+> r.command(['set', 'key', 'value'], function(err, ret) {
+        if (!err) {
+            r.command(['get', 'key'], function(err, ret) {
+                console.log(ret)
+            });
+        }
+});
+undefined
+> value
+```
+
+### Synchronically
+
+```js
+> var rlite = require('rlite');
+undefined
+> var r = rlite.createClient(':memory:');
+undefined
+> r.commandSync(['set', 'key', 'value']);
 'OK'
-> r.command(['get', 'key'])
+> r.commandSync(['get', 'key']);
 'value'
 ```
