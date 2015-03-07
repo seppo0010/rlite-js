@@ -1,6 +1,6 @@
 {
   "name": "rlite",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "rlite client library",
   "keywords": [
     "redis",
@@ -10,7 +10,7 @@
   "author": "Sebastian Waisbrot <seppo0010@gmail.com>",
   "main": "./index.js",
   "scripts": {
-    "install": "cd vendor/rlite && make libhirlite && cd ../..",
+    "install": "cd vendor/rlite && make all && cd ../..",
     "test": "mocha --reporter dot --slow 200ms --bail"
   },
   "repository": {
